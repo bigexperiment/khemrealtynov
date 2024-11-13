@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="icon" type="image/png" href="./favicon.png">
+    <meta charset="UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Khem Realty</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" rel="stylesheet">
+    <style>
+        .tagline {
+            font-family: 'Dancing Script', cursive;
+        }
+
+        .custom-footer {
+            background-color: rgb(221, 235, 255);
+            color: black;
+        }
+
+        .swiper {
+            width: 100%;
+            height: 500px;
+        }
+
+        .swiper-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .listing-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100">
+
+    <header class="bg-cover bg-center h-screen" style="background-image: url('./house.jpeg');">
+        <div class="bg-black bg-opacity-50 h-full">
+            <nav class="container mx-auto px-6 py-8">
+                <div class="text-white text-3xl font-bold">Khem Realty</div>
+                <div class="text-white text-xl mt-2 tagline">Your Trustworthy Realtor</div>
+            </nav>
+            <div class="flex flex-col items-center justify-center h-full">
+                <h1 class="text-5xl text-white font-bold">Find Your Dream Home</h1>
+                <p class="text-xl text-white mt-4">Let me help you find the perfect property.</p>
+                <div class="mt-8">
+                    <a href="#listing" class="bg-white text-blue-500 font-bold py-2 px-4 rounded-full mr-4">See Listings</a>
+                    <button class="bg-transparent border border-white text-white font-bold py-2 px-4 rounded-full" onclick="scrollToContact()">Contact Me</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-6 mt-6">
+        <!-- Listings Section -->
+        <section id="listing" class="mb-12 listing-container">
+            <h2 class="text-3xl font-bold text-center mb-8">Featured Listing</h2>
+
+            <div class="swiper mb-6">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide"><img src="https://ap.rdcpix.com/2979a50137972058889af24b0ddf5cb4l-m74042754rd-w2048_h1536.webp" alt="House view 1"></div>
+                    <div class="swiper-slide"><img src="https://ap.rdcpix.com/2979a50137972058889af24b0ddf5cb4l-m333350263rd-w2048_h1536.webp" alt="House view 2"></div>
+                    <div class="swiper-slide"><img src="https://ap.rdcpix.com/2979a50137972058889af24b0ddf5cb4l-m853068205rd-w2048_h1536.webp" alt="House view 3"></div>
+                    <div class="swiper-slide"><img src="https://ap.rdcpix.com/2979a50137972058889af24b0ddf5cb4l-m433640391rd-w2048_h1536.webp" alt="House view 4"></div>
+                    <div class="swiper-slide"><img src="https://ap.rdcpix.com/2979a50137972058889af24b0ddf5cb4l-m2040231810rd-w2048_h1536.webp" alt="House view 5"></div>
+                </div>
+                <div class="swiper-pagination"></div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+            </div>
+
+            <div class="bg-white shadow-lg rounded-lg p-8">
+                <h3 class="text-2xl font-bold">1728 W 81st St, Los Angeles, CA 90047</h3>
+                <p class="text-3xl font-bold text-blue-600 mt-2">$769,000</p>
+                <p class="text-gray-600">Est. $5,043/mo</p>
+                <div class="flex flex-wrap gap-6 mt-4">
+                    <div class="text-center"><p class="text-2xl font-bold">3</p><p class="text-gray-600">Beds</p></div>
+                    <div class="text-center"><p class="text-2xl font-bold">2</p><p class="text-gray-600">Baths</p></div>
+                    <div class="text-center"><p class="text-2xl font-bold">1,770</p><p class="text-gray-600">Sq.Ft.</p></div>
+                    <div class="text-center"><p class="text-2xl font-bold">6,677</p><p class="text-gray-600">Lot Sq.Ft.</p></div>
+                </div>
+                <p class="text-gray-700 leading-relaxed mt-6">Charming 3-Bed, 2-Bath Home with Original Architecture and Modern Updates:  This spacious home features two recently remodeled bathrooms and a brand-new kitchen with beautiful quartz countertops and custom cabinetry. The large dining room and living room boast a cozy fireplace, along with ample storage cabinets and pantries.   Additionally, there is a lovely covered patio in the back. The large lot in the back provides plenty of space for an accessory dwelling unit (ADU) and offers parking for 5-6 vehicles.   (LARD2: It is zoned for a two-family dwelling)
+
+                </p>
+                <div class="text-center mt-8">
+                    <a href="#contact" class="block w-full md:w-96 mx-auto bg-blue-600 text-white font-bold py-4 px-8 rounded-lg text-xl hover:bg-blue-700 transition-colors mb-4" onclick="scrollToContact()">Contact Agent</a>
+                    <a href="https://www.zillow.com/homedetails/1728-W-81st-St-Los-Angeles-CA-90047/20948095_zpid/" target="_blank" class="text-blue-600 hover:underline">See on Zillow</a>
+                </div>
+            </div>
+        </section>
+
+        <br>
+        <br>
+
+
+        <!-- About Me Section -->
+        <section class="mb-12">
+            <h2 class="text-3xl font-bold text-center">About Khem Adhikari</h2>
+            <div class="flex flex-col md:flex-row items-center mt-8">
+                <img src="/photo.jpg" alt="Khem Adhikari" class="w-64 h-64 rounded-full mb-4 md:mb-0 md:mr-8">
+                <div>
+                    <p class="text-lg">As a seasoned real estate professional, I'm passionate about helping my clients find their dream homes. With years of experience and a deep understanding of the local market, I'm committed to providing exceptional service and guiding you through every step of the process.</p>
+                    <p class="text-lg mt-4">Whether you're a first-time homebuyer or an experienced investor, I'll work tirelessly to ensure your real estate goals are met. Let's connect and start your journey to finding the perfect property.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section class="mb-12">
+            <h2 class="text-3xl font-bold text-center">Testimonials on Zillow.com</h2>
+            <div class="mt-8">
+                <script src="https://widget.senja.io/js/iframeResizer.min.js"></script>
+                <iframe id="wall-of-love-6RRvJa" src="https://senja.io/p/khem-realty/6RRvJa?hideNavigation=true&embed=true" title="Wall of Love" frameborder="0" scrolling="no" width="100%"></iframe>
+                <script>iFrameResize({log: false, checkOrigin: false}, "#wall-of-love-6RRvJa");</script>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer id="contact" class="bg-gray-800 text-white py-6 custom-footer">
+        <div class="container mx-auto px-6 text-center">
+            <p class="text-lg">Khem Adhikari</p>
+            <p class="text-base tagline">Your Trustworthy Realtor</p>
+            <p><a href="tel:+17146797165" class="hover:underline">+1 (714) 679-7165</a></p>
+            <p><a href="mailto:info@khemrealty.com" class="hover:underline">info@khemrealty.com</a></p>
+            <center><img width=240px src="./kw.png"></center>
+            <p>6621 Pacific Coast Hwy #150, Long Beach, CA 90803</p>
+            <p>DRE# 02187254</p>
+            <div class="mt-6">
+                <p class="text-sm">We are so thankful for our amazing clients!</p>
+                <p class="text-sm">Please click below to leave us a review on Zillow.</p>
+                <a href="https://zillow.com/reviews/write/?s=X1-ZUr0t35l5cype1_7oq0q" target="_blank" class="bg-white text-blue-500 font-bold py-2 px-4 rounded mt-4 inline-block">Review me on Zillow</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+    <script>
+        // Initialize Swiper
+        const swiper = new Swiper('.swiper', {
+            loop: true,
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+        });
+
+        // Smooth scroll to Contact section
+        function scrollToContact() {
+            document.getElementById("contact").scrollIntoView({ behavior: "smooth" });
+        }
+    </script>
+</body>
+
+</html>

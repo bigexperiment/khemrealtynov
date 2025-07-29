@@ -1,163 +1,595 @@
-<!DOCTYPE html>
-<html lang="en">
+// ============ Styles ============ //
+const style = document.createElement("style");
+style.textContent = `
+#vidai-box {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 350px;
+  background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%);
+  border-radius: 18px;
+  box-shadow: 0 12px 32px rgba(0,0,0,0.18), 0 1.5px 6px rgba(0,0,0,0.08);
+  padding: 22px 22px 18px 22px;
+  font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+  z-index: 9999;
+  transform: translateY(60px) scale(0.98);
+  opacity: 0;
+  transition: all 0.6s cubic-bezier(.4,1.4,.6,1);
+  max-height: 85vh;
+  overflow-y: auto;
+  border: 1.5px solid #e0e7ff;
+  backdrop-filter: blur(2px);
+}
+#vidai-box.show {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+}
+#vidai-box textarea,
+#vidai-box input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 12px;
+  border: 1.5px solid #c7d2fe;
+  border-radius: 8px;
+  font-size: 15px;
+  box-sizing: border-box;
+  background: #f1f5f9;
+  transition: border 0.2s;
+}
+#vidai-box textarea:focus,
+#vidai-box input:focus {
+  border: 1.5px solid #6366f1;
+  outline: none;
+}
+#vidai-box button {
+  padding: 12px 0;
+  background: #6366f1;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  width: 100%;
+  font-weight: 700;
+  font-size: 17px;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 8px rgba(99,102,241,0.08);
+  transition: background 0.2s, box-shadow 0.2s, transform 0.2s;
+}
+#vidai-box button:hover:not(:disabled),
+#vidai-box button:focus-visible:not(:disabled) {
+  background: linear-gradient(90deg, #818cf8 0%, #6366f1 100%);
+  box-shadow: 0 4px 16px rgba(99,102,241,0.18);
+  transform: scale(1.03);
+}
+#vidai-box button:disabled {
+  background: #c7d2fe;
+  cursor: not-allowed;
+}
+#vidai-box .explore-btn {
+  background: linear-gradient(90deg, #f472b6 0%, #6366f1 100%);
+  color: #fff;
+  font-size: 20px;
+  font-weight: 800;
+  margin-bottom: 18px;
+  border-radius: 14px;
+  box-shadow: 0 4px 24px rgba(236,72,153,0.12);
+  animation: pulse 1.8s infinite;
+  letter-spacing: 0.5px;
+  border: none;
+  transition: background 0.3s, box-shadow 0.2s, transform 0.2s;
+}
+#vidai-box .explore-btn:hover:not(:disabled),
+#vidai-box .explore-btn:focus-visible:not(:disabled) {
+  background: linear-gradient(90deg, #6366f1 0%, #f472b6 100%);
+  box-shadow: 0 6px 32px rgba(99,102,241,0.18), 0 2px 12px rgba(236,72,153,0.10);
+  transform: scale(1.05);
+}
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(236,72,153,0.18); }
+  70% { box-shadow: 0 0 0 12px rgba(236,72,153,0.01); }
+  100% { box-shadow: 0 0 0 0 rgba(236,72,153,0.18); }
+}
+#vidai-box .title {
+  font-size: 22px;
+  font-weight: 900;
+  margin-bottom: 10px;
+  color: #3730a3;
+  letter-spacing: 0.2px;
+}
+#vidai-box .sub {
+  font-size: 14px;
+  margin-bottom: 14px;
+  color: #6366f1;
+  font-weight: 500;
+}
+#vidai-answer,
+.vidai-question {
+  margin-top: 12px;
+  font-size: 16px;
+  white-space: pre-wrap;
+  cursor: pointer;
+  color: #22223b;
+  background: #f1f5f9;
+  padding: 10px 12px;
+  border-radius: 10px;
+  box-shadow: 0 1px 4px rgba(99,102,241,0.04);
+  transition: background 0.2s, box-shadow 0.2s;
+  border: 1.2px solid #e0e7ff;
+  font-weight: 600;
+}
+.vidai-question:hover {
+  background: #e0e7ff;
+  box-shadow: 0 2px 8px rgba(99,102,241,0.10);
+}
+.vidai-answer-block {
+  font-size: 15px;
+  margin-top: 7px;
+  background: #fff;
+  padding: 10px 12px;
+  border-left: 4px solid #6366f1;
+  border-radius: 8px;
+  box-shadow: 0 1px 6px rgba(99,102,241,0.06);
+  transition: max-height 0.4s cubic-bezier(.4,1.4,.6,1), opacity 0.3s;
+  opacity: 1;
+  max-height: 400px;
+  overflow: hidden;
+}
+.vidai-answer-block.hide {
+  opacity: 0;
+  max-height: 0;
+  padding: 0 12px;
+  margin-top: 0;
+  border: none;
+}
+.loading {
+  color: #6366f1;
+  font-style: italic;
+}
+.error {
+  color: #dc3545;
+  background: #f8d7da;
+  border-left-color: #dc3545;
+}
+.success {
+  color: #155724;
+  background: #d4edda;
+  border-left-color: #28a745;
+}
+#vidai-box .close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 22px;
+  cursor: pointer;
+  color: #6366f1;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  transition: background 0.2s, color 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#vidai-box .close-btn:hover {
+  background: #e0e7ff;
+  color: #f472b6;
+}
+`;
+document.head.appendChild(style);
 
-<head>
-    <link rel="icon" type="image/png" href="./favicon.png">
-    <meta charset="UTF-8">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Khem Realty</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" rel="stylesheet">
-    <style>
+// ============ Create UI ============ //
+const wrapper = document.createElement("div");
+wrapper.id = "vidai-box";
 
-        
-.swiper {
-        width: 100%;
-        max-height: 500px; /* Set a max-height to control container height */
+const closeBtn = document.createElement("button");
+closeBtn.className = "close-btn";
+// Replace innerHTML with safe SVG creation
+const svgNS = "http://www.w3.org/2000/svg";
+const svg = document.createElementNS(svgNS, "svg");
+svg.setAttribute("width", "20");
+svg.setAttribute("height", "20");
+svg.setAttribute("viewBox", "0 0 20 20");
+svg.setAttribute("fill", "none");
+const path = document.createElementNS(svgNS, "path");
+path.setAttribute("d", "M6 6L14 14M14 6L6 14");
+path.setAttribute("stroke", "currentColor");
+path.setAttribute("stroke-width", "2");
+path.setAttribute("stroke-linecap", "round");
+svg.appendChild(path);
+closeBtn.appendChild(svg);
+closeBtn.onclick = () => {
+  wrapper.classList.remove("show");
+  setTimeout(() => document.body.removeChild(wrapper), 400);
+};
+
+const title = document.createElement("div");
+title.className = "title";
+title.textContent = "🤖 VidAI Assistant";
+
+const sub = document.createElement("div");
+sub.className = "sub";
+sub.textContent = "Paste transcript to begin";
+
+const textarea = document.createElement("textarea");
+textarea.rows = 6;
+textarea.placeholder = "Paste transcript here...\n\n💡 Tip: Try 'Auto-detect' to find transcript on page";
+
+const submitBtn = document.createElement("button");
+submitBtn.textContent = "Submit Transcript";
+
+const autoDetectBtn = document.createElement("button");
+autoDetectBtn.textContent = "Auto-detect Transcript";
+autoDetectBtn.style.background = "#28a745";
+autoDetectBtn.style.fontWeight = "700";
+autoDetectBtn.style.fontSize = "15px";
+autoDetectBtn.style.marginBottom = "10px";
+
+wrapper.appendChild(closeBtn);
+wrapper.appendChild(title);
+wrapper.appendChild(sub);
+wrapper.appendChild(textarea);
+wrapper.appendChild(autoDetectBtn);
+wrapper.appendChild(submitBtn);
+document.body.appendChild(wrapper);
+setTimeout(() => wrapper.classList.add("show"), 100);
+
+let transcript = "";
+
+// ============ Auto-detect Transcript ============ //
+autoDetectBtn.onclick = async () => {
+  autoDetectBtn.disabled = true;
+  autoDetectBtn.textContent = "Searching...";
+  
+  try {
+    // Try to find YouTube's transcript panel
+    const transcriptPanel = document.querySelector('[data-testid="transcript-panel"]');
+    if (transcriptPanel) {
+      const segments = transcriptPanel.querySelectorAll('[data-testid="transcript-segment"]');
+      if (segments.length > 0) {
+        const transcriptText = Array.from(segments)
+          .map(segment => segment.textContent)
+          .join('\n');
+        textarea.value = transcriptText;
+        sub.textContent = `✅ Found ${segments.length} transcript segments`;
+        sub.className = "sub success";
+      } else {
+        sub.textContent = "❌ No transcript segments found";
+        sub.className = "sub error";
+      }
+    } else {
+      // Try alternative selectors
+      const altTranscript = document.querySelector('.ytd-transcript-segment-renderer');
+      if (altTranscript) {
+        const segments = document.querySelectorAll('.ytd-transcript-segment-renderer');
+        const transcriptText = Array.from(segments)
+          .map(segment => segment.textContent)
+          .join('\n');
+        textarea.value = transcriptText;
+        sub.textContent = `✅ Found ${segments.length} transcript segments`;
+        sub.className = "sub success";
+      } else {
+        sub.textContent = "❌ No transcript found. Please paste manually.";
+        sub.className = "sub error";
+      }
     }
+  } catch (err) {
+    sub.textContent = "❌ Error detecting transcript";
+    sub.className = "sub error";
+  } finally {
+    autoDetectBtn.disabled = false;
+    autoDetectBtn.textContent = "Auto-detect Transcript";
+  }
+};
 
-    .swiper-slide {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        overflow: hidden;
+// ============ On Transcript Submit ============ //
+submitBtn.onclick = () => {
+  transcript = textarea.value.trim();
+  if (!transcript) {
+    sub.textContent = "❌ Transcript is required";
+    sub.className = "sub error";
+    return;
+  }
+
+  while (wrapper.firstChild) wrapper.removeChild(wrapper.firstChild);
+  wrapper.appendChild(closeBtn);
+  wrapper.appendChild(title);
+  sub.textContent = "Ask a question about the current moment";
+  sub.className = "sub";
+  wrapper.appendChild(sub);
+
+  const questionInput = document.createElement("input");
+  questionInput.placeholder = "e.g. What is he saying now?";
+  wrapper.appendChild(questionInput);
+
+  const askButton = document.createElement("button");
+  askButton.textContent = "Ask";
+  wrapper.appendChild(askButton);
+
+  // Modern, big, animated Explore Questions button
+  const exploreButton = document.createElement("button");
+  exploreButton.textContent = "✨ Explore Questions";
+  exploreButton.className = "explore-btn";
+  wrapper.appendChild(exploreButton);
+
+  const answerDiv = document.createElement("div");
+  answerDiv.id = "vidai-answer";
+  answerDiv.textContent = "Awaiting your question...";
+  wrapper.appendChild(answerDiv);
+
+  // ==== Manual Ask ====
+  askButton.onclick = async () => {
+    const video = document.querySelector("video");
+    if (!video) {
+      answerDiv.textContent = "❌ No video found on page";
+      answerDiv.className = "error";
+      return;
     }
-
-    .swiper-slide img {
-        width: auto;
-        height: 100%;
-        max-width: 100%;
-        object-fit: cover;
+    
+    const currentTime = Math.floor(video.currentTime);
+    const question = questionInput.value.trim();
+    
+    if (!question) {
+      answerDiv.textContent = "❌ Please enter a question";
+      answerDiv.className = "error";
+      return;
     }
-    </style>
-</head>
+    
+    askButton.disabled = true;
+    askButton.textContent = "Thinking...";
+    answerDiv.textContent = "Thinking...";
+    answerDiv.className = "loading";
 
-<body class="bg-gray-100">
+    const prompt = `
+You are watching a YouTube video. Here's the full transcript:
 
-    <header class="bg-cover bg-center h-screen" style="background-image: url('./house.jpeg');">
-        <div class="bg-black bg-opacity-50 h-full">
-            <nav class="container mx-auto px-6 py-8">
-                <div class="text-white text-3xl font-bold">Khem Realty</div>
-                <div class="text-white text-xl mt-2 tagline">Your Trustworthy Realtor</div>
-            </nav>
-            <div class="flex flex-col items-center justify-center h-full">
-                <h1 class="text-5xl text-white font-bold">Find Your Dream Home</h1>
-                <p class="text-xl text-white mt-4">Let me help you find the perfect property.</p>
-                <div class="mt-8">
-                    <a href="#listing" class="bg-white text-blue-500 font-bold py-2 px-4 rounded-full mr-4">See Listings</a>
-                    <button class="bg-transparent border border-white text-white font-bold py-2 px-4 rounded-full" onclick="scrollToContact()">Contact Me</button>
-                </div>
-            </div>
-        </div>
-    </header>
+${transcript}
 
-    <!-- Main Content -->
-    <main class="container mx-auto px-6 mt-6">
-        <!-- Listings Section -->
-        <section id="listing" class="mb-12 listing-container">
-            <h2 class="text-3xl font-bold text-center mb-8">Featured Listing</h2>
+The user is currently at ${currentTime} seconds.
 
-            <div class="swiper mb-6">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide"><img src="https://ap.rdcpix.com/2979a50137972058889af24b0ddf5cb4l-m74042754rd-w2048_h1536.webp" alt="House view 1"></div>
-                    <div class="swiper-slide"><img src="https://ap.rdcpix.com/2979a50137972058889af24b0ddf5cb4l-m333350263rd-w2048_h1536.webp" alt="House view 2"></div>
-                    <div class="swiper-slide"><img src="https://ap.rdcpix.com/2979a50137972058889af24b0ddf5cb4l-m853068205rd-w2048_h1536.webp" alt="House view 3"></div>
-                    <div class="swiper-slide"><img src="https://ap.rdcpix.com/2979a50137972058889af24b0ddf5cb4l-m433640391rd-w2048_h1536.webp" alt="House view 4"></div>
-                    <div class="swiper-slide"><img src="https://ap.rdcpix.com/2979a50137972058889af24b0ddf5cb4l-m2040231810rd-w2048_h1536.webp" alt="House view 5"></div>
-                </div>
-                <div class="swiper-pagination"></div>
-                <div class="swiper-button-next"></div>
-                <div class="swiper-button-prev"></div>
-            </div>
+Answer this question based on the context around that time:
+"${question}"
 
-            <div class="bg-white shadow-lg rounded-lg p-8">
-                <h3 class="text-2xl font-bold">1728 W 81st St, Los Angeles, CA 90047</h3>
-                <p class="text-3xl font-bold text-blue-600 mt-2">$769,000</p>
-                <p class="text-gray-600">Est. $5,043/mo</p>
-                <div class="flex flex-wrap gap-6 mt-4">
-                    <div class="text-center"><p class="text-2xl font-bold">3</p><p class="text-gray-600">Beds</p></div>
-                    <div class="text-center"><p class="text-2xl font-bold">2</p><p class="text-gray-600">Baths</p></div>
-                    <div class="text-center"><p class="text-2xl font-bold">1,770</p><p class="text-gray-600">Sq.Ft.</p></div>
-                    <div class="text-center"><p class="text-2xl font-bold">6,677</p><p class="text-gray-600">Lot Sq.Ft.</p></div>
-                </div>
-                <p class="text-gray-700 leading-relaxed mt-6">Charming 3-Bed, 2-Bath Home with Original Architecture and Modern Updates:  This spacious home features two recently remodeled bathrooms and a brand-new kitchen with beautiful quartz countertops and custom cabinetry. The large dining room and living room boast a cozy fireplace, along with ample storage cabinets and pantries.   Additionally, there is a lovely covered patio in the back. The large lot in the back provides plenty of space for an accessory dwelling unit (ADU) and offers parking for 5-6 vehicles.   (LARD2: It is zoned for a two-family dwelling)
+Provide a clear, helpful response that directly addresses the question.
+`;
 
-                </p>
-                <div class="text-center mt-8">
-                    <a href="#contact" class="block w-full md:w-96 mx-auto bg-blue-600 text-white font-bold py-4 px-8 rounded-lg text-xl hover:bg-blue-700 transition-colors mb-4" onclick="scrollToContact()">Contact Agent</a>
-                    <a href="https://www.zillow.com/homedetails/1728-W-81st-St-Los-Angeles-CA-90047/20948095_zpid/" target="_blank" class="text-blue-600 hover:underline">See on Zillow</a>
-                </div>
-            </div>
-        </section>
+    try {
+      const reply = await sendToGeminiText(prompt);
+      answerDiv.textContent = reply;
+      answerDiv.className = "";
+    } catch (err) {
+      answerDiv.textContent = "❌ Error: " + err.message;
+      answerDiv.className = "error";
+    } finally {
+      askButton.disabled = false;
+      askButton.textContent = "Ask";
+    }
+  };
 
-        <br>
-        <br>
+  // ==== Explore Questions ====
+  const showQuestions = async () => {
+    exploreButton.disabled = true;
+    exploreButton.textContent = "Generating...";
+    answerDiv.textContent = "Generating possible questions...";
+    answerDiv.className = "loading";
 
+    const video = document.querySelector("video");
+    if (!video) {
+      answerDiv.textContent = "❌ No video found on page";
+      answerDiv.className = "error";
+      exploreButton.disabled = false;
+      exploreButton.textContent = "✨ Explore Questions";
+      return;
+    }
+    const currentTime = Math.floor(video.currentTime);
 
-        <!-- About Me Section -->
-        <section class="mb-12">
-            <h2 class="text-3xl font-bold text-center">About Khem Adhikari</h2>
-            <div class="flex flex-col md:flex-row items-center mt-8">
-                <img src="/photo.jpg" alt="Khem Adhikari" class="w-64 h-64 rounded-full mb-4 md:mb-0 md:mr-8">
-                <div>
-                    <p class="text-lg">As a seasoned real estate professional, I'm passionate about helping my clients find their dream homes. With years of experience and a deep understanding of the local market, I'm committed to providing exceptional service and guiding you through every step of the process.</p>
-                    <p class="text-lg mt-4">Whether you're a first-time homebuyer or an experienced investor, I'll work tirelessly to ensure your real estate goals are met. Let's connect and start your journey to finding the perfect property.</p>
-                </div>
-            </div>
-        </section>
+    // Add timestamp display
+    const timestampDiv = document.createElement("div");
+    timestampDiv.style.cssText = "text-align: center; margin: 5px 0; padding: 4px; background: #e0e7ff; border-radius: 6px; font-size: 12px; color: #3730a3; font-weight: 500;";
+    const minutes = Math.floor(currentTime / 60);
+    const seconds = currentTime % 60;
+    timestampDiv.textContent = `⏰ ${minutes}:${seconds.toString().padStart(2, '0')}`;
+    wrapper.appendChild(timestampDiv);
 
-        <!-- Testimonials Section -->
-        <section class="mb-12">
-            <h2 class="text-3xl font-bold text-center">Testimonials on Zillow.com</h2>
-            <div class="mt-8">
-                <script src="https://widget.senja.io/js/iframeResizer.min.js"></script>
-                <iframe id="wall-of-love-6RRvJa" src="https://senja.io/p/khem-realty/6RRvJa?hideNavigation=true&embed=true" title="Wall of Love" frameborder="0" scrolling="no" width="100%"></iframe>
-                <script>iFrameResize({log: false, checkOrigin: false}, "#wall-of-love-6RRvJa");</script>
-            </div>
-        </section>
-    </main>
+    const explorePrompt = `
+You are given the full transcript of a YouTube video and the timestamp where the user paused.
 
-    <!-- Footer -->
-    <footer id="contact" class="bg-gray-800 text-white py-6 custom-footer">
-        <div class="container mx-auto px-6 text-center">
-            <p class="text-lg">Khem Adhikari</p>
-            <p class="text-base tagline">Your Trustworthy Realtor</p>
-            <p><a href="tel:+17146797165" class="hover:underline">+1 (714) 679-7165</a></p>
-            <p><a href="mailto:info@khemrealty.com" class="hover:underline">info@khemrealty.com</a></p>
-            <center><img width=240px src="./kw.png"></center>
-            <p>6621 Pacific Coast Hwy #150, Long Beach, CA 90803</p>
-            <p>DRE# 02187254</p>
-            <div class="mt-6">
-                <p class="text-sm">We are so thankful for our amazing clients!</p>
-                <p class="text-sm">Please click below to leave us a review on Zillow.</p>
-                <a href="https://zillow.com/reviews/write/?s=X1-ZUr0t35l5cype1_7oq0q" target="_blank" class="bg-white text-blue-500 font-bold py-2 px-4 rounded mt-4 inline-block">Review me on Zillow</a>
-            </div>
-        </div>
-    </footer>
+Full Transcript:
+${transcript}
 
-    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
-    <script>
-        // Initialize Swiper
-        const swiper = new Swiper('.swiper', {
-            loop: true,
-            pagination: {
-                el: '.swiper-pagination',
-                clickable: true,
-            },
-            navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-            },
+The user paused at ${currentTime} seconds (${minutes}:${seconds.toString().padStart(2, '0')}).
+
+Your task: Generate exactly 5 simple, direct questions that a viewer might naturally ask about what is being discussed in the transcript specifically around this timestamp.
+- First, extract the relevant lines or sentences from the transcript that are temporally close to this timestamp.
+- Focus ONLY on the content around this timestamp, not the rest of the video.
+- If you see technical terms, jargon, or named concepts in that specific content, include questions like "What is [term]?" or "What does [term] mean here?"
+- Do NOT ask about the rest of the video or general summary questions—only the immediate context around the timestamp.
+- Respond with ONLY a valid JSON array of strings. No extra text.
+
+Example output:
+["What is attention in a transformer model?", "Why does attention help the model focus?", "What does it mean to weigh different parts of the input?", "How does a transformer know which words are relevant?", "What is a token in this context?"]
+`;
+
+    // Log the full prompt for debugging
+    console.log('=== EXPLORE QUESTIONS PROMPT ===');
+    console.log(explorePrompt);
+    console.log('=== END PROMPT ===');
+
+    try {
+      const questions = await sendToGeminiJSON(explorePrompt);
+      
+      // Remove existing timestamp display
+      const existingTimestamp = wrapper.querySelector('div[style*="text-align: center"]');
+      if (existingTimestamp) {
+        wrapper.removeChild(existingTimestamp);
+      }
+      
+      // Clear the answer div safely without innerHTML
+      while (answerDiv.firstChild) {
+        answerDiv.removeChild(answerDiv.firstChild);
+      }
+      answerDiv.className = "";
+
+      questions.forEach(q => {
+        const qEl = document.createElement("div");
+        qEl.className = "vidai-question";
+        qEl.textContent = q;
+        qEl.style.transition = "background 0.2s, box-shadow 0.2s";
+        let answerLoaded = false;
+        let followUp = null;
+
+        // Click to show/hide answer
+        qEl.addEventListener('click', async () => {
+          // If answer is already loaded and visible, hide it
+          if (answerLoaded && followUp && !followUp.classList.contains('hide')) {
+            followUp.classList.add('hide');
+            return;
+          }
+          
+          // If answer is loaded but hidden, show it
+          if (answerLoaded && followUp && followUp.classList.contains('hide')) {
+            followUp.classList.remove('hide');
+            return;
+          }
+
+          // Load answer for the first time
+          if (!answerLoaded) {
+            followUp = document.createElement("div");
+            followUp.className = "vidai-answer-block loading";
+            followUp.textContent = "Thinking...";
+            qEl.appendChild(followUp);
+            
+            const followPrompt = `
+Full transcript:
+
+${transcript}
+
+The viewer is currently at second ${currentTime}.
+
+Answer this question: "${q}"
+`;
+            try {
+              const answer = await sendToGeminiText(followPrompt);
+              followUp.textContent = answer;
+              followUp.className = "vidai-answer-block";
+              answerLoaded = true;
+            } catch (err) {
+              followUp.textContent = "❌ Error: " + err.message;
+              followUp.className = "vidai-answer-block error";
+            }
+          }
         });
+        
+        answerDiv.appendChild(qEl);
+      });
+    } catch (err) {
+      answerDiv.textContent = "❌ Error: " + err.message;
+      answerDiv.className = "error";
+    } finally {
+      exploreButton.disabled = false;
+      exploreButton.textContent = "✨ Explore Questions";
+    }
+  };
 
-        // Smooth scroll to Contact section
-        function scrollToContact() {
-            document.getElementById("contact").scrollIntoView({ behavior: "smooth" });
+  // Click to explore questions
+  exploreButton.onclick = showQuestions;
+};
+
+// ============ Gemini Helpers ============ //
+const API_KEY = "AIzaSyDVQybIQVGks0DViB2dDrP9UoIjKfUUvnE"; // Replace with your key
+
+async function sendToGeminiText(prompt) {
+  try {
+    const res = await fetch("https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-goog-api-key": API_KEY
+      },
+      body: JSON.stringify({
+        contents: [{ role: "user", parts: [{ text: prompt }] }]
+      })
+    });
+    
+    if (!res.ok) {
+      const errorData = await res.json();
+      throw new Error(`API Error: ${errorData.error?.message || res.statusText}`);
+    }
+    
+    const data = await res.json();
+    return data?.candidates?.[0]?.content?.parts?.[0]?.text || "❌ No response.";
+  } catch (err) {
+    console.error("Gemini text error:", err);
+    throw err;
+  }
+}
+
+async function sendToGeminiJSON(prompt) {
+  try {
+    const res = await fetch("https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-goog-api-key": API_KEY
+      },
+      body: JSON.stringify({
+        contents: [{ role: "user", parts: [{ text: prompt }] }],
+        generation_config: {
+          response_mime_type: "application/json"
         }
-    </script>
-</body>
-
-</html>
+      })
+    });
+    
+    if (!res.ok) {
+      const errorData = await res.json();
+      throw new Error(`API Error: ${errorData.error?.message || res.statusText}`);
+    }
+    
+    const data = await res.json();
+    const raw = data?.candidates?.[0]?.content?.parts?.[0]?.text;
+    
+    if (!raw) {
+      throw new Error("No response from API");
+    }
+    
+    try {
+      // Clean the response - remove any markdown formatting or extra text
+      let cleanedRaw = raw.trim();
+      
+      // Remove markdown code blocks if present
+      if (cleanedRaw.startsWith('```json')) {
+        cleanedRaw = cleanedRaw.replace(/^```json\s*/, '').replace(/\s*```$/, '');
+      } else if (cleanedRaw.startsWith('```')) {
+        cleanedRaw = cleanedRaw.replace(/^```\s*/, '').replace(/\s*```$/, '');
+      }
+      
+      const parsed = JSON.parse(cleanedRaw);
+      
+      // Validate that it's an array of strings
+      if (!Array.isArray(parsed)) {
+        throw new Error("Response is not an array");
+      }
+      
+      if (parsed.length === 0) {
+        throw new Error("No questions generated");
+      }
+      
+      // Ensure all items are strings
+      const questions = parsed.map(q => String(q)).filter(q => q.trim().length > 0);
+      
+      if (questions.length === 0) {
+        throw new Error("No valid questions found");
+      }
+      
+      return questions;
+    } catch (parseErr) {
+      console.error("JSON parse error:", parseErr);
+      console.error("Raw response:", raw);
+      throw new Error("Invalid JSON response from API");
+    }
+  } catch (err) {
+    console.error("Gemini JSON error:", err);
+    throw err;
+  }
+}

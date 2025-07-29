@@ -395,91 +395,54 @@
                     </p>
                 </div>
 
-                <div class="grid lg:grid-cols-2 gap-8 md:gap-16 items-center">
-                    <div class="fade-in">
-                        <div class="swiper mb-8">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide">
-                                    <img src="https://photos.zillowstatic.com/fp/baea9362f3271f6f371f8cab023b89fd-cc_ft_1536.webp" alt="House view 1" onerror="this.style.display='none'">
-                                </div>
-                                <div class="swiper-slide">
-                                    <img src="https://photos.zillowstatic.com/fp/cab3cd734ce8a67357dd58a3a6a2b27d-cc_ft_1536.webp" alt="House view 2" onerror="this.style.display='none'">
-                                </div>
-                                <div class="swiper-slide">
-                                    <img src="https://photos.zillowstatic.com/fp/298f68bcdb2be6467c85a7599bf4946c-cc_ft_768.webp" alt="House view 3" onerror="this.style.display='none'">
-                                </div>
-                                <div class="swiper-slide">
-                                    <img src="https://photos.zillowstatic.com/fp/36ccbaaa03a3e84326c675921fe9bdf3-cc_ft_1536.webp" alt="House view 4" onerror="this.style.display='none'">
-                                </div>
-                                <div class="swiper-slide">
-                                    <img src="https://photos.zillowstatic.com/fp/feb6a556e41751ee39c3c91184d0bd01-cc_ft_768.webp" alt="House view 5" onerror="this.style.display='none'">
-                                </div>
-                                <div class="swiper-slide">
-                                    <img src="https://photos.zillowstatic.com/fp/853f82fea8bc675ad2abaca26db5e332-cc_ft_1536.webp" alt="House view 6" onerror="this.style.display='none'">
-                                </div>
-                                <div class="swiper-slide">
-                                    <img src="https://photos.zillowstatic.com/fp/a34556962fd4397717d2bf0f56200315-cc_ft_768.webp" alt="House view 7" onerror="this.style.display='none'">
-                                </div>
-                                <div class="swiper-slide">
-                                    <img src="https://photos.zillowstatic.com/fp/95a4e3589d286c387b5e75607100bb39-cc_ft_1536.webp" alt="House view 8" onerror="this.style.display='none'">
-                                </div>
+                <div class="max-w-4xl mx-auto">
+                    <div class="bg-white rounded-3xl shadow-2xl overflow-hidden card-hover">
+                        <!-- Image Slideshow -->
+                        <div class="relative">
+                            <div id="propertySlideshow" class="relative h-64 md:h-96 overflow-hidden">
+                                <img id="slide1" src="https://photos.zillowstatic.com/fp/baea9362f3271f6f371f8cab023b89fd-cc_ft_1536.webp" alt="Property view 1" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-500 opacity-100">
+                                <img id="slide2" src="https://photos.zillowstatic.com/fp/cab3cd734ce8a67357dd58a3a6a2b27d-cc_ft_1536.webp" alt="Property view 2" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-500 opacity-0">
+                                <img id="slide3" src="https://photos.zillowstatic.com/fp/298f68bcdb2be6467c85a7599bf4946c-cc_ft_768.webp" alt="Property view 3" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-500 opacity-0">
+                                <img id="slide4" src="https://photos.zillowstatic.com/fp/36ccbaaa03a3e84326c675921fe9bdf3-cc_ft_1536.webp" alt="Property view 4" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-500 opacity-0">
                             </div>
-                            <div class="swiper-pagination"></div>
-                            <div class="swiper-button-next"></div>
-                            <div class="swiper-button-prev"></div>
+                            
+                            <!-- Navigation Dots -->
+                            <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
+                                <button onclick="showSlide(1)" class="w-3 h-3 bg-white rounded-full opacity-100 transition-opacity duration-300" id="dot1"></button>
+                                <button onclick="showSlide(2)" class="w-3 h-3 bg-white rounded-full opacity-50 transition-opacity duration-300" id="dot2"></button>
+                                <button onclick="showSlide(3)" class="w-3 h-3 bg-white rounded-full opacity-50 transition-opacity duration-300" id="dot3"></button>
+                                <button onclick="showSlide(4)" class="w-3 h-3 bg-white rounded-full opacity-50 transition-opacity duration-300" id="dot4"></button>
+                            </div>
+                            
+                            <!-- Navigation Arrows -->
+                            <button onclick="previousSlide()" class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-80 hover:bg-opacity-100 rounded-full p-2 transition-all duration-300">
+                                <i class="fas fa-chevron-left text-gray-800"></i>
+                            </button>
+                            <button onclick="nextSlide()" class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-80 hover:bg-opacity-100 rounded-full p-2 transition-all duration-300">
+                                <i class="fas fa-chevron-right text-gray-800"></i>
+                            </button>
                         </div>
-                    </div>
-
-                    <div class="fade-in">
-                        <div class="bg-white rounded-3xl shadow-2xl p-6 md:p-10 card-hover">
-                            <h3 class="text-2xl md:text-3xl font-display font-bold mb-4 md:mb-6">5426 4th Ave, Los Angeles, CA 90043</h3>
-                            <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4 md:gap-6 mb-6 md:mb-8">
-                                <p class="text-4xl md:text-5xl font-bold text-gradient">$849,000</p>
-                                <span class="bg-green-100 text-green-800 px-3 md:px-4 py-2 rounded-full text-xs md:text-sm font-medium">Active Listing</span>
+                        
+                        <!-- Property Details -->
+                        <div class="p-6 md:p-8">
+                            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6">
+                                <h3 class="text-2xl md:text-3xl font-display font-bold text-gray-800 mb-4 sm:mb-0">5426 4th Ave, Los Angeles, CA 90043</h3>
+                                <span class="bg-green-100 text-green-800 px-4 py-2 rounded-full text-sm font-medium">Active Listing</span>
                             </div>
                             
-                            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 mb-8 md:mb-10">
-                                <div class="text-center">
-                                    <div class="feature-icon mx-auto mb-4">
-                                        <i class="fas fa-bed"></i>
-                                    </div>
-                                    <p class="text-2xl font-bold text-gray-800">3</p>
-                                    <p class="text-gray-600">Bedrooms</p>
-                                </div>
-                                <div class="text-center">
-                                    <div class="feature-icon mx-auto mb-4">
-                                        <i class="fas fa-bath"></i>
-                                    </div>
-                                    <p class="text-2xl font-bold text-gray-800">2</p>
-                                    <p class="text-gray-600">Bathrooms</p>
-                                </div>
-                                <div class="text-center">
-                                    <div class="feature-icon mx-auto mb-4">
-                                        <i class="fas fa-ruler-combined"></i>
-                                    </div>
-                                    <p class="text-2xl font-bold text-gray-800">--</p>
-                                    <p class="text-gray-600">Sq.Ft.</p>
-                                </div>
-                                <div class="text-center">
-                                    <div class="feature-icon mx-auto mb-4">
-                                        <i class="fas fa-home"></i>
-                                    </div>
-                                    <p class="text-2xl font-bold text-gray-800">--</p>
-                                    <p class="text-gray-600">Lot Sq.Ft.</p>
-                                </div>
-                            </div>
+                            <div class="text-4xl md:text-5xl font-bold text-gradient mb-6">$849,000</div>
                             
-                            <p class="text-gray-700 leading-relaxed mb-8 md:mb-10 text-base md:text-lg">
-                                Beautiful family home in a desirable Los Angeles neighborhood. This well-maintained property offers modern amenities and a great location for families and investors alike.
+                            <p class="text-gray-700 text-lg leading-relaxed mb-8">
+                                Beautiful family home in a desirable Los Angeles neighborhood. This well-maintained property offers modern amenities and a great location for families and investors alike. Features 3 bedrooms, 2 bathrooms, and plenty of living space.
                             </p>
                             
-                            <div class="space-y-4">
-                                <button class="btn-primary w-full text-base md:text-lg py-3 md:py-4" onclick="scrollToContact()">
-                                    <i class="fas fa-phone mr-2 md:mr-3"></i>Contact Agent
-                                </button>
-                                <a href="https://www.zillow.com/homedetails/5426-4th-Ave-Los-Angeles-CA-90043/20564282_zpid/" target="_blank" class="block text-center text-blue-600 hover:text-blue-800 transition-colors text-base md:text-lg">
-                                    <i class="fas fa-external-link-alt mr-2"></i>View on Zillow
+                            <div class="flex flex-col sm:flex-row gap-4">
+                                <a href="https://www.zillow.com/homedetails/5426-4th-Ave-Los-Angeles-CA-90043/20564282_zpid/" target="_blank" class="btn-primary flex-1 text-center text-lg py-4">
+                                    <i class="fas fa-external-link-alt mr-3"></i>View on Zillow
                                 </a>
+                                <button onclick="scrollToContact()" class="btn-secondary flex-1 text-lg py-4">
+                                    <i class="fas fa-phone mr-3"></i>Contact Agent
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -879,34 +842,59 @@
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
     <script>
-        // Initialize Swiper with error handling
+        // Property Slideshow functionality
+        let currentSlide = 1;
+        const totalSlides = 4;
+        let slideInterval;
+
+        function showSlide(slideNumber) {
+            // Hide all slides
+            for (let i = 1; i <= totalSlides; i++) {
+                const slide = document.getElementById(`slide${i}`);
+                const dot = document.getElementById(`dot${i}`);
+                if (slide) slide.style.opacity = '0';
+                if (dot) dot.style.opacity = '0.5';
+            }
+            
+            // Show current slide
+            const currentSlideElement = document.getElementById(`slide${slideNumber}`);
+            const currentDot = document.getElementById(`dot${slideNumber}`);
+            if (currentSlideElement) currentSlideElement.style.opacity = '1';
+            if (currentDot) currentDot.style.opacity = '1';
+            
+            currentSlide = slideNumber;
+        }
+
+        function nextSlide() {
+            const next = currentSlide === totalSlides ? 1 : currentSlide + 1;
+            showSlide(next);
+        }
+
+        function previousSlide() {
+            const prev = currentSlide === 1 ? totalSlides : currentSlide - 1;
+            showSlide(prev);
+        }
+
+        function startSlideshow() {
+            slideInterval = setInterval(nextSlide, 4000);
+        }
+
+        function stopSlideshow() {
+            if (slideInterval) {
+                clearInterval(slideInterval);
+            }
+        }
+
+        // Initialize slideshow when page loads
         document.addEventListener('DOMContentLoaded', function() {
-            try {
-                if (typeof Swiper !== 'undefined') {
-                    const swiper = new Swiper('.swiper', {
-                        loop: true,
-                        autoplay: {
-                            delay: 5000,
-                            disableOnInteraction: false,
-                        },
-                        pagination: {
-                            el: '.swiper-pagination',
-                            clickable: true,
-                        },
-                        navigation: {
-                            nextEl: '.swiper-button-next',
-                            prevEl: '.swiper-button-prev',
-                        },
-                        effect: 'slide',
-                        speed: 600,
-                        grabCursor: true,
-                    });
-                    console.log('Swiper initialized successfully');
-                } else {
-                    console.error('Swiper library not loaded');
-                }
-            } catch (error) {
-                console.error('Error initializing Swiper:', error);
+            // Start the slideshow
+            startSlideshow();
+            
+            // Pause slideshow when hovering over the slideshow area
+            const slideshow = document.getElementById('propertySlideshow');
+            if (slideshow) {
+                slideshow.addEventListener('mouseenter', stopSlideshow);
+                slideshow.addEventListener('mouseleave', startSlideshow);
             }
         });
 

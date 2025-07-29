@@ -304,6 +304,30 @@
             background: rgba(255, 255, 255, 0.1);
             border: 1px solid rgba(255, 255, 255, 0.2);
         }
+        
+        .highlight-keyword {
+            background: linear-gradient(135deg, #0ea5e9 0%, #7c3aed 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+            text-decoration: underline;
+            text-decoration-color: #0ea5e9;
+            text-decoration-thickness: 2px;
+            text-underline-offset: 4px;
+            position: relative;
+        }
+        
+        .highlight-keyword::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(135deg, #0ea5e9 0%, #7c3aed 100%);
+            border-radius: 1px;
+        }
     </style>
 </head>
 
@@ -640,7 +664,7 @@
                             <span class="text-sm text-gray-500 ml-3">Highly likely to recommend</span>
                         </div>
                         <p class="text-gray-700 mb-6 italic text-lg leading-relaxed">
-                            "Mr. Khem is very professional/knowledgeable/skillful person. We are first time home buyers and don't have much ideas/info. From the 1st day he guided us like guardian to find our dream house. He is very transparent on his approach and his works."
+                            "Mr. Khem is very <span class="highlight-keyword">professional</span>/<span class="highlight-keyword">knowledgeable</span>/<span class="highlight-keyword">skillful</span> person. We are first time home buyers and don't have much ideas/info. From the 1st day he guided us like guardian to find our dream house. He is very <span class="highlight-keyword">transparent</span> on his approach and his works."
                         </p>
                         <div class="flex items-center justify-between">
                             <div>
@@ -666,7 +690,7 @@
                             <span class="text-sm text-gray-500 ml-3">Highly likely to recommend</span>
                         </div>
                         <p class="text-gray-700 mb-6 italic text-lg leading-relaxed">
-                            "Working with Khem was a great experience. He's very calm, patient, and never pushy — always focused on what was best for me. I truly appreciated his honesty, guidance, and relaxed approach throughout the process. Highly recommend!"
+                            "Working with Khem was a great experience. He's very <span class="highlight-keyword">calm</span>, <span class="highlight-keyword">patient</span>, and never pushy — always focused on what was best for me. I truly appreciated his <span class="highlight-keyword">honesty</span>, <span class="highlight-keyword">guidance</span>, and relaxed approach throughout the process. Highly recommend!"
                         </p>
                         <div class="flex items-center justify-between">
                             <div>
@@ -692,7 +716,7 @@
                             <span class="text-sm text-gray-500 ml-3">Highly likely to recommend</span>
                         </div>
                         <p class="text-gray-700 mb-6 italic text-lg leading-relaxed">
-                            "I had an outstanding experience working with Mr. Khem on the purchase of my multi-family property. His professionalism, market knowledge, and dedication made the entire process smooth and stress-free. He was always available to answer questions, negotiate effectively, and guide me through every step."
+                            "I had an outstanding experience working with Mr. Khem on the purchase of my multi-family property. His <span class="highlight-keyword">professionalism</span>, <span class="highlight-keyword">market knowledge</span>, and <span class="highlight-keyword">dedication</span> made the entire process smooth and stress-free. He was always available to answer questions, <span class="highlight-keyword">negotiate effectively</span>, and guide me through every step."
                         </p>
                         <div class="flex items-center justify-between">
                             <div>
@@ -718,7 +742,7 @@
                             <span class="text-sm text-gray-500 ml-3">Highly likely to recommend</span>
                         </div>
                         <p class="text-gray-700 mb-6 italic text-lg leading-relaxed">
-                            "Mr. Khemlal was absolutely fantastic to work with throughout our home-buying process. His expertise and knowledge of the local market were invaluable. He was always available to answer our questions, and he went above and beyond to ensure we found the perfect home."
+                            "Mr. Khemlal was absolutely fantastic to work with throughout our home-buying process. His <span class="highlight-keyword">expertise</span> and <span class="highlight-keyword">knowledge of the local market</span> were invaluable. He was always available to answer our questions, and he went <span class="highlight-keyword">above and beyond</span> to ensure we found the perfect home."
                         </p>
                         <div class="flex items-center justify-between">
                             <div>
@@ -744,7 +768,7 @@
                             <span class="text-sm text-gray-500 ml-3">Highly likely to recommend</span>
                         </div>
                         <p class="text-gray-700 mb-6 italic text-lg leading-relaxed">
-                            "My experience with Khem was great. Very knowledgeable and honest. I had a very smooth transaction in buying my home. He was available to answer all of my questions and concerns any time of the day. He negotiated hard on my behalf to get the best price."
+                            "My experience with Khem was great. Very <span class="highlight-keyword">knowledgeable</span> and <span class="highlight-keyword">honest</span>. I had a very <span class="highlight-keyword">smooth transaction</span> in buying my home. He was available to answer all of my questions and concerns any time of the day. He <span class="highlight-keyword">negotiated hard</span> on my behalf to get the best price."
                         </p>
                         <div class="flex items-center justify-between">
                             <div>
@@ -770,7 +794,7 @@
                             <span class="text-sm text-gray-500 ml-3">Highly likely to recommend</span>
                         </div>
                         <p class="text-gray-700 mb-6 italic text-lg leading-relaxed">
-                            "I'm delighted to share my incredible experience with Mr Khemlal Adhikari who recently helped me find and purchase my dream home. From the very first meeting, it was clear that he was not only highly knowledgeable about the local market, but also genuinely committed to helping me find the perfect property. As a first-time homebuyer, I had a lot of questions and concerns, but he was always patient and took the time to explain everything in a way that was easy to understand. He guided me through every step, from arranging viewings to making offers and even negotiating terms. He also had a great network of professionals, such as inspectors and lenders, which made the entire process seamless and stress-free."
+                            "I'm delighted to share my incredible experience with Mr Khemlal Adhikari who recently helped me find and purchase my dream home. From the very first meeting, it was clear that he was not only highly <span class="highlight-keyword">knowledgeable about the local market</span>, but also genuinely <span class="highlight-keyword">committed to helping</span> me find the perfect property. As a first-time homebuyer, I had a lot of questions and concerns, but he was always <span class="highlight-keyword">patient</span> and took the time to explain everything in a way that was easy to understand. He guided me through every step, from arranging viewings to making offers and even negotiating terms. He also had a great <span class="highlight-keyword">network of professionals</span>, such as inspectors and lenders, which made the entire process <span class="highlight-keyword">seamless and stress-free</span>."
                         </p>
                         <div class="flex items-center justify-between">
                             <div>

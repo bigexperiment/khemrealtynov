@@ -1,5 +1,4 @@
 
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -57,6 +56,15 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            transition: opacity 0.3s ease;
+        }
+        
+        .swiper-slide img.loading {
+            opacity: 0.5;
+        }
+        
+        .swiper-slide img.loaded {
+            opacity: 1;
         }
         
         .swiper-pagination-bullet {
@@ -231,6 +239,64 @@
                 padding: 14px 28px;
                 font-size: 14px;
             }
+            
+            .swiper {
+                max-height: 400px;
+            }
+            
+            .feature-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 24px;
+            }
+            
+            .sale-card {
+                padding: 1.5rem;
+            }
+            
+            .glass-effect {
+                backdrop-filter: blur(15px);
+                background: rgba(255, 255, 255, 0.15);
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .section-padding {
+                padding: 40px 0;
+            }
+            
+            .stats-card {
+                padding: 1.5rem 1rem;
+            }
+            
+            .testimonial-card {
+                padding: 1.25rem;
+            }
+            
+            .btn-primary,
+            .btn-secondary {
+                padding: 12px 24px;
+                font-size: 13px;
+            }
+            
+            .swiper {
+                max-height: 300px;
+            }
+            
+            .feature-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 20px;
+            }
+            
+            .sale-card {
+                padding: 1.25rem;
+            }
+            
+            .container {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
         }
         
         .glass-effect {
@@ -274,16 +340,16 @@
                     </div>
                 </div>
             </nav>
-            <div class="flex flex-col items-center justify-center h-full text-center px-6">
-                <h1 class="text-5xl md:text-7xl lg:text-8xl font-display font-bold text-white mb-8 floating">
+            <div class="flex flex-col items-center justify-center h-full text-center px-4 md:px-6">
+                <h1 class="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-display font-bold text-white mb-6 md:mb-8 floating">
                     Find Your Dream Home
                 </h1>
-                <p class="text-lg md:text-2xl text-white opacity-90 mb-10 max-w-3xl leading-relaxed">
+                <p class="text-base sm:text-lg md:text-2xl text-white opacity-90 mb-8 md:mb-10 max-w-3xl leading-relaxed px-4">
                     Expert real estate services in Los Angeles, Orange County, and beyond
                 </p>
-                <div class="flex flex-col sm:flex-row gap-6">
-                    <a href="#listing" class="btn-primary text-lg px-8 py-4">View Current Listings</a>
-                    <button class="btn-secondary text-lg px-8 py-4" onclick="scrollToContact()">Get in Touch</button>
+                <div class="flex flex-col sm:flex-row gap-4 md:gap-6 px-4">
+                    <a href="#listing" class="btn-primary text-base md:text-lg px-6 md:px-8 py-3 md:py-4">View Current Listings</a>
+                    <button class="btn-secondary text-base md:text-lg px-6 md:px-8 py-3 md:py-4" onclick="scrollToContact()">Get in Touch</button>
                 </div>
             </div>
         </div>
@@ -294,26 +360,26 @@
         <!-- Stats Section -->
         <section class="section-padding bg-white">
             <div class="container mx-auto px-6">
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
                     <div class="stats-card fade-in">
-                        <div class="text-4xl font-bold text-gradient mb-3">5.0</div>
-                        <p class="text-gray-700 font-medium">Zillow Rating</p>
-                        <p class="text-sm text-gray-500 mt-2">9 Reviews</p>
+                        <div class="text-3xl md:text-4xl font-bold text-gradient mb-2 md:mb-3">5.0</div>
+                        <p class="text-gray-700 font-medium text-sm md:text-base">Zillow Rating</p>
+                        <p class="text-xs md:text-sm text-gray-500 mt-1 md:mt-2">9 Reviews</p>
                     </div>
                     <div class="stats-card fade-in">
-                        <div class="text-4xl font-bold text-gradient mb-3">5</div>
-                        <p class="text-gray-700 font-medium">Sales Last 12 Months</p>
-                        <p class="text-sm text-gray-500 mt-2">Active Performance</p>
+                        <div class="text-3xl md:text-4xl font-bold text-gradient mb-2 md:mb-3">5</div>
+                        <p class="text-gray-700 font-medium text-sm md:text-base">Sales Last 12 Months</p>
+                        <p class="text-xs md:text-sm text-gray-500 mt-1 md:mt-2">Active Performance</p>
                     </div>
                     <div class="stats-card fade-in">
-                        <div class="text-4xl font-bold text-gradient mb-3">14</div>
-                        <p class="text-gray-700 font-medium">Total Sales</p>
-                        <p class="text-sm text-gray-500 mt-2">Proven Track Record</p>
+                        <div class="text-3xl md:text-4xl font-bold text-gradient mb-2 md:mb-3">14</div>
+                        <p class="text-gray-700 font-medium text-sm md:text-base">Total Sales</p>
+                        <p class="text-xs md:text-sm text-gray-500 mt-1 md:mt-2">Proven Track Record</p>
                     </div>
                     <div class="stats-card fade-in">
-                        <div class="text-4xl font-bold text-gradient mb-3">$924K</div>
-                        <p class="text-gray-700 font-medium">Average Price</p>
-                        <p class="text-sm text-gray-500 mt-2">$715K-$1.3M Range</p>
+                        <div class="text-3xl md:text-4xl font-bold text-gradient mb-2 md:mb-3">$924K</div>
+                        <p class="text-gray-700 font-medium text-sm md:text-base">Average Price</p>
+                        <p class="text-xs md:text-sm text-gray-500 mt-1 md:mt-2">$715K-$1.3M Range</p>
                     </div>
                 </div>
             </div>
@@ -322,20 +388,41 @@
         <!-- Current Listing Section -->
         <section id="listing" class="section-padding">
             <div class="container mx-auto px-6">
-                <div class="text-center mb-20 fade-in">
-                    <h2 class="text-4xl md:text-6xl font-display font-bold mb-6">Current Listing</h2>
-                    <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                <div class="text-center mb-12 md:mb-20 fade-in">
+                    <h2 class="text-3xl md:text-4xl lg:text-6xl font-display font-bold mb-4 md:mb-6">Current Listing</h2>
+                    <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed px-4">
                         Featured property available now
                     </p>
                 </div>
 
-                <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div class="grid lg:grid-cols-2 gap-8 md:gap-16 items-center">
                     <div class="fade-in">
                         <div class="swiper mb-8">
                             <div class="swiper-wrapper">
-                                <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800&h=600&fit=crop" alt="House view 1"></div>
-                                <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=800&h=600&fit=crop" alt="House view 2"></div>
-                                <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&h=600&fit=crop" alt="House view 3"></div>
+                                <div class="swiper-slide">
+                                    <img src="https://photos.zillowstatic.com/fp/baea9362f3271f6f371f8cab023b89fd-cc_ft_1536.webp" alt="House view 1" onerror="this.style.display='none'">
+                                </div>
+                                <div class="swiper-slide">
+                                    <img src="https://photos.zillowstatic.com/fp/cab3cd734ce8a67357dd58a3a6a2b27d-cc_ft_1536.webp" alt="House view 2" onerror="this.style.display='none'">
+                                </div>
+                                <div class="swiper-slide">
+                                    <img src="https://photos.zillowstatic.com/fp/298f68bcdb2be6467c85a7599bf4946c-cc_ft_768.webp" alt="House view 3" onerror="this.style.display='none'">
+                                </div>
+                                <div class="swiper-slide">
+                                    <img src="https://photos.zillowstatic.com/fp/36ccbaaa03a3e84326c675921fe9bdf3-cc_ft_1536.webp" alt="House view 4" onerror="this.style.display='none'">
+                                </div>
+                                <div class="swiper-slide">
+                                    <img src="https://photos.zillowstatic.com/fp/feb6a556e41751ee39c3c91184d0bd01-cc_ft_768.webp" alt="House view 5" onerror="this.style.display='none'">
+                                </div>
+                                <div class="swiper-slide">
+                                    <img src="https://photos.zillowstatic.com/fp/853f82fea8bc675ad2abaca26db5e332-cc_ft_1536.webp" alt="House view 6" onerror="this.style.display='none'">
+                                </div>
+                                <div class="swiper-slide">
+                                    <img src="https://photos.zillowstatic.com/fp/a34556962fd4397717d2bf0f56200315-cc_ft_768.webp" alt="House view 7" onerror="this.style.display='none'">
+                                </div>
+                                <div class="swiper-slide">
+                                    <img src="https://photos.zillowstatic.com/fp/95a4e3589d286c387b5e75607100bb39-cc_ft_1536.webp" alt="House view 8" onerror="this.style.display='none'">
+                                </div>
                             </div>
                             <div class="swiper-pagination"></div>
                             <div class="swiper-button-next"></div>
@@ -344,14 +431,14 @@
                     </div>
 
                     <div class="fade-in">
-                        <div class="bg-white rounded-3xl shadow-2xl p-10 card-hover">
-                            <h3 class="text-3xl font-display font-bold mb-6">5426 4th Ave, Los Angeles, CA 90043</h3>
-                            <div class="flex items-center gap-6 mb-8">
-                                <p class="text-5xl font-bold text-gradient">$849,000</p>
-                                <span class="bg-green-100 text-green-800 px-4 py-2 rounded-full text-sm font-medium">Active Listing</span>
+                        <div class="bg-white rounded-3xl shadow-2xl p-6 md:p-10 card-hover">
+                            <h3 class="text-2xl md:text-3xl font-display font-bold mb-4 md:mb-6">5426 4th Ave, Los Angeles, CA 90043</h3>
+                            <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4 md:gap-6 mb-6 md:mb-8">
+                                <p class="text-4xl md:text-5xl font-bold text-gradient">$849,000</p>
+                                <span class="bg-green-100 text-green-800 px-3 md:px-4 py-2 rounded-full text-xs md:text-sm font-medium">Active Listing</span>
                             </div>
                             
-                            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-10">
+                            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 mb-8 md:mb-10">
                                 <div class="text-center">
                                     <div class="feature-icon mx-auto mb-4">
                                         <i class="fas fa-bed"></i>
@@ -382,15 +469,15 @@
                                 </div>
                             </div>
                             
-                            <p class="text-gray-700 leading-relaxed mb-10 text-lg">
+                            <p class="text-gray-700 leading-relaxed mb-8 md:mb-10 text-base md:text-lg">
                                 Beautiful family home in a desirable Los Angeles neighborhood. This well-maintained property offers modern amenities and a great location for families and investors alike.
                             </p>
                             
                             <div class="space-y-4">
-                                <button class="btn-primary w-full text-lg py-4" onclick="scrollToContact()">
-                                    <i class="fas fa-phone mr-3"></i>Contact Agent
+                                <button class="btn-primary w-full text-base md:text-lg py-3 md:py-4" onclick="scrollToContact()">
+                                    <i class="fas fa-phone mr-2 md:mr-3"></i>Contact Agent
                                 </button>
-                                <a href="https://www.zillow.com/homedetails/5426-4th-Ave-Los-Angeles-CA-90043/20564282_zpid/" target="_blank" class="block text-center text-blue-600 hover:text-blue-800 transition-colors text-lg">
+                                <a href="https://www.zillow.com/homedetails/5426-4th-Ave-Los-Angeles-CA-90043/20564282_zpid/" target="_blank" class="block text-center text-blue-600 hover:text-blue-800 transition-colors text-base md:text-lg">
                                     <i class="fas fa-external-link-alt mr-2"></i>View on Zillow
                                 </a>
                             </div>
@@ -403,14 +490,14 @@
         <!-- Recent Sales Section -->
         <section id="sales" class="section-padding bg-white">
             <div class="container mx-auto px-6">
-                <div class="text-center mb-20 fade-in">
-                    <h2 class="text-4xl md:text-6xl font-display font-bold mb-6">Recent Sales</h2>
-                    <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                <div class="text-center mb-12 md:mb-20 fade-in">
+                    <h2 class="text-3xl md:text-4xl lg:text-6xl font-display font-bold mb-4 md:mb-6">Recent Sales</h2>
+                    <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed px-4">
                         Successfully closed transactions showcasing my expertise
                     </p>
                 </div>
                 
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
                     <div class="sale-card fade-in">
                         <div class="flex justify-between items-start mb-6">
                             <div>
@@ -518,14 +605,14 @@
         <!-- About Me Section -->
         <section id="about" class="section-padding">
             <div class="container mx-auto px-6">
-                <div class="text-center mb-20 fade-in">
-                    <h2 class="text-4xl md:text-6xl font-display font-bold mb-6">About Khemlal Adhikari</h2>
-                    <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                <div class="text-center mb-12 md:mb-20 fade-in">
+                    <h2 class="text-3xl md:text-4xl lg:text-6xl font-display font-bold mb-4 md:mb-6">About Khemlal Adhikari</h2>
+                    <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed px-4">
                         Your trusted partner in real estate success
                     </p>
                 </div>
                 
-                <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div class="grid lg:grid-cols-2 gap-8 md:gap-16 items-center">
                     <div class="fade-in">
                         <img src="./photo.jpg" alt="Khemlal Adhikari" class="w-full max-w-lg mx-auto rounded-3xl shadow-2xl">
                     </div>
@@ -569,14 +656,14 @@
         <!-- Testimonials Section -->
         <section class="section-padding bg-white">
             <div class="container mx-auto px-6">
-                <div class="text-center mb-20 fade-in">
-                    <h2 class="text-4xl md:text-6xl font-display font-bold mb-6">Client Testimonials</h2>
-                    <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                <div class="text-center mb-12 md:mb-20 fade-in">
+                    <h2 class="text-3xl md:text-4xl lg:text-6xl font-display font-bold mb-4 md:mb-6">Client Testimonials</h2>
+                    <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed px-4">
                         What our satisfied clients have to say about their experience
                     </p>
                 </div>
                 
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
                     <!-- Testimonial 1 -->
                     <div class="testimonial-card fade-in">
                         <div class="flex items-center mb-6">
@@ -720,11 +807,11 @@
                             <span class="text-sm text-gray-500 ml-3">Highly likely to recommend</span>
                         </div>
                         <p class="text-gray-700 mb-6 italic text-lg leading-relaxed">
-                            "Khem is an exceptional real estate agent who truly cares about his clients. His attention to detail, market knowledge, and dedication to finding the perfect home made our buying experience seamless and enjoyable."
+                            "I'm delighted to share my incredible experience with Mr Khemlal Adhikari who recently helped me find and purchase my dream home. From the very first meeting, it was clear that he was not only highly knowledgeable about the local market, but also genuinely committed to helping me find the perfect property. As a first-time homebuyer, I had a lot of questions and concerns, but he was always patient and took the time to explain everything in a way that was easy to understand. He guided me through every step, from arranging viewings to making offers and even negotiating terms. He also had a great network of professionals, such as inspectors and lenders, which made the entire process seamless and stress-free."
                         </p>
                         <div class="flex items-center justify-between">
                             <div>
-                                <p class="font-semibold text-gray-800 text-lg">Sarah Johnson</p>
+                                <p class="font-semibold text-gray-800 text-lg">Pantsmriti</p>
                                 <p class="text-sm text-gray-600">Bought a Single Family home in 2024 in Long Beach, CA</p>
                             </div>
                             <div class="text-right">
@@ -752,61 +839,75 @@
     <!-- Footer -->
     <footer id="contact" class="gradient-bg text-white py-20">
         <div class="container mx-auto px-6">
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-12">
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
                 <div class="text-center md:text-left">
-                    <h3 class="text-3xl font-display font-bold mb-6">Khemlal Adhikari</h3>
-                    <p class="text-xl opacity-90 mb-8">Keller Williams Pacific Estates</p>
-                    <div class="space-y-4">
+                    <h3 class="text-2xl md:text-3xl font-display font-bold mb-4 md:mb-6">Khemlal Adhikari</h3>
+                    <p class="text-lg md:text-xl opacity-90 mb-6 md:mb-8">Keller Williams Pacific Estates</p>
+                    <div class="space-y-3 md:space-y-4">
                         <p class="flex items-center justify-center md:justify-start">
-                            <i class="fas fa-phone mr-4 text-xl"></i>
-                            <a href="tel:+17146797165" class="hover:underline text-lg">+1 (714) 679-7165</a>
+                            <i class="fas fa-phone mr-3 md:mr-4 text-lg md:text-xl"></i>
+                            <a href="tel:+17146797165" class="hover:underline text-base md:text-lg">+1 (714) 679-7165</a>
                         </p>
                         <p class="flex items-center justify-center md:justify-start">
-                            <i class="fas fa-envelope mr-4 text-xl"></i>
-                            <a href="mailto:info@khemrealty.com" class="hover:underline text-lg">info@khemrealty.com</a>
+                            <i class="fas fa-envelope mr-3 md:mr-4 text-lg md:text-xl"></i>
+                            <a href="mailto:info@khemrealty.com" class="hover:underline text-base md:text-lg">info@khemrealty.com</a>
                         </p>
                     </div>
                 </div>
                 
                 <div class="text-center">
-                    <img width="280" src="./kw.png" alt="Keller Williams" class="mx-auto mb-6">
-                    <p class="mb-3 text-lg">2883 East Spring St Suite 100</p>
-                    <p class="mb-3 text-lg">Long Beach, CA 90806</p>
-                    <p class="text-sm opacity-75">DRE# 02187254</p>
+                    <img width="280" src="./kw.png" alt="Keller Williams" class="mx-auto mb-4 md:mb-6 w-48 md:w-auto">
+                    <p class="mb-2 md:mb-3 text-base md:text-lg">2883 East Spring St Suite 100</p>
+                    <p class="mb-2 md:mb-3 text-base md:text-lg">Long Beach, CA 90806</p>
+                    <p class="text-xs md:text-sm opacity-75">DRE# 02187254</p>
                 </div>
                 
                 <div class="text-center md:text-right">
-                    <h4 class="text-2xl font-semibold mb-6">Leave a Review</h4>
-                    <p class="mb-6 opacity-90 text-lg">We are so thankful for our amazing clients!</p>
-                    <a href="https://zillow.com/reviews/write/?s=X1-ZUr0t35l5cype1_7oq0q" target="_blank" class="btn-primary inline-flex items-center text-lg px-8 py-4">
-                        <i class="fas fa-star mr-3"></i>Review on Zillow
+                    <h4 class="text-xl md:text-2xl font-semibold mb-4 md:mb-6">Leave a Review</h4>
+                    <p class="mb-4 md:mb-6 opacity-90 text-base md:text-lg">We are so thankful for our amazing clients!</p>
+                    <a href="https://zillow.com/reviews/write/?s=X1-ZUr0t35l5cype1_7oq0q" target="_blank" class="btn-primary inline-flex items-center text-base md:text-lg px-6 md:px-8 py-3 md:py-4">
+                        <i class="fas fa-star mr-2 md:mr-3"></i>Review on Zillow
                     </a>
                 </div>
             </div>
             
-            <div class="border-t border-white border-opacity-20 mt-12 pt-8 text-center">
-                <p class="text-sm opacity-75">&copy; 2024 Khem Realty. All rights reserved.</p>
+            <div class="border-t border-white border-opacity-20 mt-8 md:mt-12 pt-6 md:pt-8 text-center">
+                <p class="text-xs md:text-sm opacity-75">&copy; 2024 Khem Realty. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
     <script>
-        // Initialize Swiper
-        const swiper = new Swiper('.swiper', {
-            loop: true,
-            autoplay: {
-                delay: 5000,
-                disableOnInteraction: false,
-            },
-            pagination: {
-                el: '.swiper-pagination',
-                clickable: true,
-            },
-            navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-            },
+        // Initialize Swiper with error handling
+        document.addEventListener('DOMContentLoaded', function() {
+            try {
+                if (typeof Swiper !== 'undefined') {
+                    const swiper = new Swiper('.swiper', {
+                        loop: true,
+                        autoplay: {
+                            delay: 5000,
+                            disableOnInteraction: false,
+                        },
+                        pagination: {
+                            el: '.swiper-pagination',
+                            clickable: true,
+                        },
+                        navigation: {
+                            nextEl: '.swiper-button-next',
+                            prevEl: '.swiper-button-prev',
+                        },
+                        effect: 'slide',
+                        speed: 600,
+                        grabCursor: true,
+                    });
+                    console.log('Swiper initialized successfully');
+                } else {
+                    console.error('Swiper library not loaded');
+                }
+            } catch (error) {
+                console.error('Error initializing Swiper:', error);
+            }
         });
 
         // Smooth scroll to Contact section
@@ -836,6 +937,24 @@
         
         document.querySelectorAll('.fade-in').forEach(el => {
             observer.observe(el);
+        });
+        
+        // Handle image loading for Swiper
+        document.addEventListener('DOMContentLoaded', function() {
+            const swiperImages = document.querySelectorAll('.swiper-slide img');
+            swiperImages.forEach(img => {
+                img.classList.add('loading');
+                
+                img.addEventListener('load', function() {
+                    this.classList.remove('loading');
+                    this.classList.add('loaded');
+                });
+                
+                img.addEventListener('error', function() {
+                    console.error('Failed to load image:', this.src);
+                    this.style.display = 'none';
+                });
+            });
         });
     </script>
 </body>
